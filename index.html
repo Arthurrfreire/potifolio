@@ -411,7 +411,7 @@
     }
 
     /* projects */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 1.2rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
     .project {
       --mx: 50%; --my: 50%;
       position: relative; overflow: hidden;
@@ -432,12 +432,6 @@
     .project-idx { font-family: var(--font-mono); font-size: .78rem; color: var(--muted); }
     .project-org { color: var(--accent-ink); margin-left: .6rem; }
     .project-private { font-family: var(--font-mono); font-size: .75rem; color: var(--muted); padding-top: .3rem; }
-    .project.featured { border-color: color-mix(in srgb, var(--accent-ink) 40%, var(--border)); }
-    .project.featured h3 { font-size: clamp(1.65rem, 3vw, 2.3rem); }
-    @media (min-width: 900px) {
-      .project.featured { grid-column: span 2; }
-      .project.featured .ps { grid-template-columns: 1fr 1fr; gap: 1.4rem; }
-    }
     .proj-filters { display: flex; flex-wrap: wrap; gap: .5rem; margin: -1.5rem 0 2rem; }
     .proj-filters button {
       font-family: var(--font-mono); font-size: .82rem; cursor: pointer;
@@ -537,7 +531,7 @@
       .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
       .terminal { transform: none; }
       .scroll-cue { display: none; }
-      .about-grid, .edu-grid { grid-template-columns: 1fr; }
+      .about-grid, .edu-grid, .projects-grid { grid-template-columns: 1fr; }
       .tl-card { grid-template-columns: 1fr; gap: .8rem; }
       .tl-meta { flex-direction: row; flex-wrap: wrap; gap: .3rem 1rem; }
     }
@@ -861,7 +855,7 @@
 
       projects: [
         {
-          kind: 'einstein', org: 'Einstein · SGP', featured: true,
+          kind: 'einstein', org: 'Einstein · SGP',
           title: 'Robô Plataforma Brasil → SGP',
           result: 'sync automática a cada 2 dias',
           problem: 'A Plataforma Brasil não oferece API. Os projetos de pesquisa e seus pareceres precisavam chegar ao SGP sem trabalho manual.',
@@ -1054,7 +1048,7 @@
       }).join('');
 
       $('#projects-grid').innerHTML = CV.projects.map((p, i) => `
-        <article class="project reveal${p.featured ? ' featured' : ''}" data-kind="${esc(p.kind || '')}" style="--d:${(i % 3) * .08}s">
+        <article class="project reveal" data-kind="${esc(p.kind || '')}" style="--d:${(i % 3) * .08}s">
           <div class="project-top">
             <span class="project-idx">P/${String(i + 1).padStart(2, '0')}${p.org ? `<span class="project-org">${esc(p.org)}</span>` : ''}</span>
             ${p.result ? `<span class="project-result">${esc(p.result)}</span>` : ''}
