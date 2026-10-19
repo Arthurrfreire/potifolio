@@ -2,3 +2,9 @@
 ARF - full.pdf
 Profile.pdf
 ATIVIDADES*.pdf
+
+node_modules/
+package.json
+package-lock.json
+og-image.html
+og-image.png
